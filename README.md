@@ -9,7 +9,7 @@ Main goal was to create a register & login page component for Angular frontend a
 
 <h2>API</h2>
 
-API has been built using Ballerina language (SwanLake version) and it delivers folliwing methods: 
+API has been built using Ballerina language (SwanLake version) and it delivers following methods: 
 <dl>
 <dt>GET /users
 <dd>Returns list of all users (ID + login/e-mail)</dd>
