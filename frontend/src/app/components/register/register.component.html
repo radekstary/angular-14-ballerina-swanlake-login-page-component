@@ -1,0 +1,95 @@
+<section id="register">
+  <form
+    id="register-form"
+    name="form"
+    (ngSubmit)="form.valid && onSubmit()"
+    novalidate
+    #registerForm="ngForm"
+  >
+      <mat-form-field appearance="fill" class="pb-1">
+        <mat-label>Login</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="adres e-mail"
+          [formControl]="form.email"
+          (change)="checkEmail()"
+          required
+          autofocus 
+        />
+        <mat-icon
+          matSuffix
+          color="error"
+          *ngIf="form.email.touched && form.email.status === 'INVALID'"
+          >close</mat-icon
+        >
+        <mat-error *ngIf="form.email.hasError('required')"
+          >Pole wymagane</mat-error
+        >
+        <mat-error *ngIf="form.email.hasError('email')"
+          >Niepoprawny format adresu</mat-error
+        >
+        <mat-error *ngIf="form.email.dirty && emailInUse">{{
+          errorMessage.email
+        }}</mat-error>
+      </mat-form-field>
+
+    <mat-progress-bar
+      mode="determinate"
+      value="{{progressBarValue}}"
+      id="password-progress-bar"
+      #progressBar
+    ></mat-progress-bar>
+
+    <mat-form-field appearance="fill" class="pb-1">
+      <mat-label>Hasło</mat-label>
+      <input
+        matInput
+        type="password"
+        name="password"
+        [formControl]="form.password"
+        minlength="8"
+        required
+      />
+      <mat-icon
+        matSuffix
+        color="error"
+        *ngIf="
+          form.password.touched && form.password.status === 'INVALID' 
+        "
+        >close</mat-icon
+      >        
+      <mat-error *ngIf="form.password.touched && errorMessage.password">{{
+        errorMessage.password
+      }}</mat-error>
+      <mat-error *ngIf="form.password.hasError('required')"
+        >Pole wymagane</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="pb-1">
+      <mat-label>Powtórz hasło</mat-label>
+      <input
+        matInput
+        type="password"
+        name="passwordRepeat"
+        #passwordRepeat
+        [formControl]="form.passwordRepeat"
+        (focusout)="checkIfPasswordsMatch()"
+        required
+      />
+      <mat-hint
+        >Hasło musi składać się minimum 1 cyfry, 1 małej litery, 1 dużej litery
+        i co najmniej 8 znaków.</mat-hint
+      >
+      <mat-error>{{ errorMessage.passwordRepeat }}</mat-error>
+      <mat-error *ngIf="form.passwordRepeat.hasError('required')"
+        >Pole wymagane</mat-error
+      >
+    </mat-form-field>
+
+    <mat-error class="error-message my-4">{{ errorMessage.api }} </mat-error>
+
+    <button mat-raised-button color="primary" (click)="onSubmit()">Zarejestruj</button>
+  </form>
+</section>

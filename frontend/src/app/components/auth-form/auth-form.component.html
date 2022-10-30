@@ -1,0 +1,28 @@
+<main class="auth-bg">
+  <mat-card class="auth-box">
+    <mat-card-title class="text-center">
+      <img src="../../../assets/logo_gpsguardian.svg" alt="" class="auth-logo" />
+    </mat-card-title>
+    <mat-card-content>
+      <nav mat-tab-nav-bar mat-align-tabs="center" class="auth-nav">
+        <a
+          mat-tab-link
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+        >
+          Zaloguj
+        </a>
+        <a
+          mat-tab-link
+          [routerLink]="['/register']"
+          routerLinkActive="router-link-active"
+        >
+          Zarejestruj
+        </a>
+      </nav>
+      <mat-tab-nav-panel #tabPanel>
+        <router-outlet></router-outlet>
+      </mat-tab-nav-panel>
+    </mat-card-content>
+  </mat-card>
+</main>

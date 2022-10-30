@@ -1,0 +1,56 @@
+<section id="login">
+  <form
+    id="login-form"
+    *ngIf="!isLoggedIn"
+    name="form"
+    (ngSubmit)="loginForm.form.valid && onSubmit()"
+    novalidate
+    #loginForm="ngForm"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Hasło</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="Wprowadź hasło"
+        [formControl]="form.password"
+        required
+        autofocus
+      />
+      <!-- <mat-error *ngIf="form.email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="adres e-mail"
+        [formControl]="form.email"
+        required
+      />
+      <!-- <mat-error *ngIf="form.email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+
+    <a
+      mat-flat-button
+      class="ms-auto button-password-reset"
+      [routerLink]="['/reset-password']"
+      routerLinkActive="router-link-active"
+    >
+      Zresetuj hasło
+    </a>
+
+    <mat-error
+      class="text-center error-message mt-3 mb-4"
+      *ngIf="loginForm.submitted && isLoginFailed"
+      >Niepoprawne hasło
+    </mat-error>
+
+    <button mat-flat-button color="primary" type="submit">Zaloguj</button>
+  </form>
+  <div class="text-center" *ngIf="isLoggedIn">
+    <p>Pomyślnie zalogowano jako: {{ currentUser }}.</p>
+    <button mat-flat-button color="accent" (click)="logout()">Wyloguj</button>
+  </div>
+</section>
