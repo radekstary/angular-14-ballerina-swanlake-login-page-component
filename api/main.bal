@@ -2,14 +2,11 @@ import ballerina/http;
 
 listener http:Listener httpListener = new (8080);
 
-int nextUserId = 4;
-
 type User record {
     int id;
     string email;
     string password?;
 };
-
 
 User[] users = [
     {
@@ -28,6 +25,8 @@ User[] users = [
         password: "never_give_up!"
     }
 ];
+
+int nextUserId = users.length() + 1;
 
 @http:ServiceConfig {
     cors: {
