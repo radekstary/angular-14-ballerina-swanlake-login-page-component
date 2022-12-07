@@ -11,16 +11,6 @@ type User record {
 User[] users = [
     {
         id: 1,
-        email: "rafal.aleksandrzak@geotik.com",
-        password: "qwerty#123"
-    },
-    {
-        id: 2,
-        email: "radoslaw.stary@gmail.com",
-        password: "abcd@321"
-    },
-    {
-        id: 3,
         email: "rick.astley@yahoo.com",
         password: "never_give_up!"
     }
